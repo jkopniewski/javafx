@@ -7,6 +7,8 @@ package kck_automat;
 
 import javafx.application.Application;
 import javafx.scene.*;
+
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
@@ -47,7 +49,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     private static final int WIDTH = 1400;
-    private static final int HEIGHT = 1000;
+    private static final int HEIGHT = 1080;
 
     private double anchorX, anchorY;
     private double anchorAngleX = 0;
@@ -57,15 +59,34 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        //widok automatu
         Box boxDol = new Box(150, 60, 80);
         Box boxLewyBok = new Box(10, 300, 80);
         Box boxPrawyBok = new Box(60, 300, 80);
         Box boxGora = new Box(205, 10, 80);
+        Box boxTyl = new Box(200, 300, 10);
+        Rectangle szyba = new Rectangle(150, 265);
 
-        PhongMaterial phong = new PhongMaterial();
-        phong.setDiffuseColor(Color.BLANCHEDALMOND);
+        PhongMaterial texture1 = new PhongMaterial();
+        Image obudowa = new Image("sample/resources/dark-metal-texture.jpg");
+        texture1.setDiffuseMap(obudowa);
 
+        PhongMaterial test = new PhongMaterial();
+        szyba.setFill(Color.LIGHTBLUE);
+        szyba.setOpacity(0.3);
+        szyba.setTranslateY(-270);
+        szyba.setTranslateZ(-35);
+        szyba.setTranslateX(-75);
 
+        boxDol.setMaterial(texture1);
+        boxLewyBok.setMaterial(texture1);
+        boxPrawyBok.setMaterial(texture1);
+        boxGora.setMaterial(texture1);
+        boxTyl.setMaterial(texture1);
+
+        boxTyl.setTranslateY(-120);
+        boxTyl.setTranslateX(20);
+        boxTyl.setTranslateZ(36);
 
         boxLewyBok.setTranslateX(-80);
         boxLewyBok.setTranslateY(-120);
@@ -76,14 +97,16 @@ public class Main extends Application {
         boxGora.setTranslateY(-275);
         boxGora.setTranslateX(17.5);
 
+
+
         Rectangle panel = new Rectangle(45, 150);
         panel.setTranslateZ(-41);
         panel.setTranslateX(68);
         panel.setTranslateY(-250);
-        panel.setFill(Color.SILVER);
+        panel.setFill(Color.GREY);
 
         SmartGroup group = new SmartGroup();
-        group.getChildren().addAll(boxDol, boxLewyBok, boxPrawyBok, boxGora, panel);
+        group.getChildren().addAll(boxDol, boxLewyBok, boxPrawyBok, boxGora, boxTyl, panel, szyba);
 
 
 
@@ -92,7 +115,7 @@ public class Main extends Application {
         camera.setTranslateY(-125);
 
         Scene scene = new Scene(group, WIDTH, HEIGHT, true, SceneAntialiasing.BALANCED);
-        scene.setFill(Color.BLACK);
+        scene.setFill(Color.LIGHTGREY);
         scene.setCamera(camera);
 
 
@@ -104,7 +127,7 @@ public class Main extends Application {
 
 
 
-        primaryStage.setTitle("Genuine Coder");
+        primaryStage.setTitle("Automat");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
