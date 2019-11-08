@@ -49,7 +49,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     private static final int WIDTH = 1400;
-    private static final int HEIGHT = 1080;
+    private static final int HEIGHT = 900;
 
     private double anchorX, anchorY;
     private double anchorAngleX = 0;
